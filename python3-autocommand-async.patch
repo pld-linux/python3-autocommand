@@ -1,0 +1,44 @@
+--- autocommand-2.2.1/test/test_autoasync.py.orig	2017-08-15 20:59:41.000000000 +0200
++++ autocommand-2.2.1/test/test_autoasync.py	2022-03-20 19:25:33.588865758 +0100
+@@ -81,8 +81,8 @@ def test_basic_autoasync(context_loop):
+ 
+     @autoasync
+     def async_main():
+-        task1 = asyncio.async(coro_1())
+-        task2 = asyncio.async(coro_2())
++        task1 = asyncio.ensure_future(coro_1())
++        task2 = asyncio.ensure_future(coro_2())
+ 
+         result1 = yield from task1
+         result2 = yield from task2
+@@ -105,7 +105,7 @@ def test_custom_loop(context_loop, new_l
+         did_bad_coro_run = True
+         yield
+ 
+-    asyncio.async(bad_coro())
++    asyncio.ensure_future(bad_coro())
+ 
+     @autoasync(loop=new_loop)
+     @asyncio.coroutine
+@@ -173,8 +173,8 @@ def test_run_forever(context_loop):
+     @autoasync(forever=True)
+     @asyncio.coroutine
+     def async_main():
+-        asyncio.async(set_value_after(0.1))
+-        asyncio.async(stop_loop_after(0.2))
++        asyncio.ensure_future(set_value_after(0.1))
++        asyncio.ensure_future(stop_loop_after(0.2))
+         yield
+ 
+     async_main()
+@@ -197,8 +197,8 @@ def test_run_forever_func(context_loop):
+ 
+     @autoasync(forever=True)
+     def main_func():
+-        asyncio.async(set_value_after(0.1))
+-        asyncio.async(stop_loop_after(0.2))
++        asyncio.ensure_future(set_value_after(0.1))
++        asyncio.ensure_future(stop_loop_after(0.2))
+ 
+     main_func()
+     assert retrieved_value
