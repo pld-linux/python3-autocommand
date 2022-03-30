@@ -7,7 +7,7 @@ Summary:	Library to create a command-line program from a function
 Summary(pl.UTF-8):	Biblioteka do tworzenia programów linii poleceń z funkcji
 Name:		python3-autocommand
 Version:	2.2.1
-Release:	2
+Release:	3
 License:	LGPL v3
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/autocommand/
