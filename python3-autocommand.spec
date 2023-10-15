@@ -6,23 +6,22 @@
 Summary:	Library to create a command-line program from a function
 Summary(pl.UTF-8):	Biblioteka do tworzenia programów linii poleceń z funkcji
 Name:		python3-autocommand
-Version:	2.2.1
-Release:	3
+Version:	2.2.2
+Release:	1
 License:	LGPL v3
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/autocommand/
 Source0:	https://files.pythonhosted.org/packages/source/a/autocommand/autocommand-%{version}.tar.gz
-# Source0-md5:	0695be9e3b7de1e589ee4cbf3734ad3d
-Patch0:		%{name}-async.patch
+# Source0-md5:	0cab5141bad0dfb363b086e93fd4125e
 URL:		https://pypi.org/project/autocommand/
-BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3-modules >= 1:3.7
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-pytest
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
-Requires:	python3-modules >= 1:3.3
+Requires:	python3-modules >= 1:3.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,7 +35,6 @@ parserów argparse z sygnatur funkcji.
 
 %prep
 %setup -q -n autocommand-%{version}
-%patch0 -p1
 
 %build
 %py3_build
@@ -57,6 +55,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.rst
+%doc README.md
 %{py3_sitescriptdir}/autocommand
 %{py3_sitescriptdir}/autocommand-%{version}-py*.egg-info
